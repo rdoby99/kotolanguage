@@ -34,8 +34,10 @@ export default function Analyzer({ onOutputReturn, onError, output }) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
-      // console.log(data);
-      onOutputReturn(data.results);
+
+      const dataJson = JSON.parse(data);
+
+      onOutputReturn(dataJson);
     } catch (error) {
       console.error("An error occurred:", error);
       onError(error.message);
